@@ -1,0 +1,45 @@
+# Environment & Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+*.env
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+test_results.txt
+
+# Databases & Media
+*.sqlite3
+*.db
+backend/media/evidence/*
+!backend/media/evidence/.gitkeep
+
+# Flutter & Dart
+**/build/
+**/.dart_tool/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/.pub-cache/
+**/.pub/
+mobile/android/app/debug/
+mobile/android/app/profile/
+mobile/android/app/release/
+
+# IDE & Editor Files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# OS files
+.DS_Store
+Thumbs.db
