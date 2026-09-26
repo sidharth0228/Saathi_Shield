@@ -1,0 +1,57 @@
+# ── HIGH_RISK scenario configuration ─────────────────────────────────
+# 2+ anomaly signals; delay alone is NEVER sufficient.
+scenario: HIGH_RISK
+
+anomaly_pick_count:
+  min: 2
+  max: 4
+
+anomalies:
+  # ---- deviation >500 m sustained >4 min, not correcting ----
+  large_sustained_deviation:
+    deviation_min_m: 500.0
+    deviation_max_m: 2000.0
+    duration_min_s: 240
+    duration_max_s: 600
+    self_corrects: false
+
+  # ---- stop >300 s off planned locations ----
+  prolonged_stop:
+    duration_min_s: 300
+    duration_max_s: 600
+    off_route_min_m: 100.0
+    off_route_max_m: 500.0
+
+  # ---- >=3 deviation episodes with non-decreasing persistence ----
+  multiple_deviations:
+    episode_count_min: 3
+    episode_count_max: 5
+    deviation_min_m: 200.0
+    deviation_max_m: 800.0
+    non_decreasing_persistence: true
+    episode_duration_min_s: 60
+    episode_duration_max_s: 180
+
+  # ---- speed variance in top decile combined with any deviation ----
+  high_speed_variance:
+    speed_oscillation_min: 0.25
+    speed_oscillation_max: 1.8
+    combined_with_deviation: true
+    min_deviation_m: 100.0
+
+  # ---- duration ratio >1.6 combined with at least one other signal ----
+  excessive_duration:
+    ratio_min: 1.6
+    ratio_max: 2.5
+    never_sufficient_alone: true
+
+# Night-time severity boost (22:00-05:00).
+night_boost:
+  start_hour: 22
+  end_hour: 5
+  magnitude_shift_pct: 25.0
+
+# Small baseline deviation during non-anomaly portions.
+baseline_deviation:
+  mean_m: 40.0
+  spread: 0.5

@@ -1,0 +1,51 @@
+# ── SUSPICIOUS scenario configuration ────────────────────────────────
+# 1-2 anomaly signals overlaid on a mostly-normal trajectory.
+scenario: SUSPICIOUS
+
+anomaly_pick_count:
+  min: 1
+  max: 2
+
+anomalies:
+  # ---- deviation 150-400 m sustained 1-4 min then returns ----
+  sustained_deviation:
+    # Lognormal with mean ≈ 250 m; 5th-%ile ≈ 132 m overlaps NORMAL tail.
+    deviation_mean_m: 250.0
+    deviation_spread: 0.35
+    duration_min_s: 60
+    duration_max_s: 240
+    returns_to_route: true
+
+  # ---- one stop 90-240 s at 50-200 m off-route ----
+  off_route_stop:
+    stop_duration_min_s: 90
+    stop_duration_max_s: 240
+    off_route_min_m: 50.0
+    off_route_max_m: 200.0
+
+  # ---- avg speed drop >40 % sustained without stopping ----
+  speed_drop:
+    drop_pct_min: 40
+    drop_pct_max: 70
+    sustained_min_s: 120
+    sustained_max_s: 360
+
+  # ---- 2-3 deviate / return cycles ----
+  deviate_return_cycles:
+    cycle_count_min: 2
+    cycle_count_max: 3
+    deviation_min_m: 100.0
+    deviation_max_m: 300.0
+    cycle_duration_min_s: 60
+    cycle_duration_max_s: 180
+
+# Night-time severity boost (22:00-05:00).
+night_boost:
+  start_hour: 22
+  end_hour: 5
+  magnitude_shift_pct: 15.0
+
+# Small baseline deviation during non-anomaly portions.
+baseline_deviation:
+  mean_m: 30.0
+  spread: 0.4

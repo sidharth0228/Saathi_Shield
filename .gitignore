@@ -22,6 +22,12 @@ test_results.txt
 backend/media/evidence/*
 !backend/media/evidence/.gitkeep
 
+# ML Generated Datasets
+ml/data/raw/**/*.json
+!ml/data/raw/**/manifest.json
+ml/data/processed/
+ml/data/splits/
+
 # Flutter & Dart
 **/build/
 **/.dart_tool/

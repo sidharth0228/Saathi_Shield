@@ -1,0 +1,36 @@
+{
+  "dataset_version": "v1",
+  "is_synthetic": true,
+  "generation_timestamp_utc": "2026-09-26T05:16:10.658664+00:00",
+  "total_trips": 100,
+  "class_counts": {
+    "NORMAL": 60,
+    "HIGH_RISK": 15,
+    "SUSPICIOUS": 25
+  },
+  "class_ratios_configured": {
+    "NORMAL": 0.6,
+    "SUSPICIOUS": 0.25,
+    "HIGH_RISK": 0.15
+  },
+  "class_ratios_actual": {
+    "NORMAL": 0.6,
+    "HIGH_RISK": 0.15,
+    "SUSPICIOUS": 0.25
+  },
+  "route_type_counts": {
+    "highway": 33,
+    "mixed": 35,
+    "urban_grid": 32
+  },
+  "point_interval_s": 5.0,
+  "gps_noise_sigma_m_range": [
+    5,
+    15
+  ],
+  "speed_noise_sigma_kmh_range": [
+    1,
+    2
+  ],
+  "rng_seed": 42
+}

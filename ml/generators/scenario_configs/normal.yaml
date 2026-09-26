@@ -1,0 +1,29 @@
+# ── NORMAL scenario configuration ────────────────────────────────────
+# Traveller follows the planned route with small, self-correcting drift.
+scenario: NORMAL
+
+# Perpendicular deviation from the planned route.
+# Lognormal distribution — tails extend naturally beyond the typical
+# range so that NORMAL and SUSPICIOUS distributions overlap.
+deviation:
+  distribution: lognormal
+  mean_m: 50.0          # expected value of the lognormal
+  spread: 0.6           # sigma of the underlying normal; 99-th %ile ≈ 170 m
+  self_correct_threshold_m: 100.0
+  self_correct_decay: 0.92   # multiplicative decay per point above threshold
+
+# Brief on-route stops (traffic light, phone call, etc.).
+stops:
+  count_min: 0
+  count_max: 2
+  duration_min_s: 10.0
+  duration_max_s: 90.0
+
+# Random speed variation around the route-type base speed.
+speed:
+  variation_pct: 10.0   # ±10 %
+
+# Ratio of actual trip duration to naïve (route_length / base_speed).
+duration_ratio:
+  min: 0.85
+  max: 1.15
